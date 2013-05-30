@@ -39,8 +39,8 @@
 		<onglet nom="shop_livraison" titre="shop_livraison:shop_livraison_titre" parent="configuration" icone="images/shop_livraison-24.png" />
 	-->
 
-	teste
 	<pipeline nom="autoriser" inclure="shop_livraison_autorisations.php" /> 
+	<pipeline nom="declarer_tables_principales" inclure="base/shop_livraison.php" />
 
 
 </paquet>

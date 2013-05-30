@@ -33,7 +33,7 @@ function shop_livraison_upgrade($nom_meta_base_version, $version_cible) {
 	# quelques exemples
 	# (que vous pouvez supprimer !)
 	# 
-	# $maj['create'] = array(array('creer_base'));
+	# 
 	#
 	# include_spip('inc/config')
 	# $maj['create'] = array(
@@ -48,7 +48,7 @@ function shop_livraison_upgrade($nom_meta_base_version, $version_cible) {
 	#	array('sql_alter','TABLE spip_xx CHANGE texte petit_texte mediumtext NOT NULL default \'\''),
 	# );
 	# ...
-
+    $maj['create'] = array(array('maj_tables', array('spip_commandes_details')));
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
 }
