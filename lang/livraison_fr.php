@@ -14,7 +14,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_titre_parametrages' => 'Paramétrages',
 
 	// T
-	'titre_page_configurer_shop_livraison' => 'Shop Livraisons',
+	'titre_livraison' => 'Livraisons',
+	'titre_page_configurer_shop_livraison' => 'Shop Livraisons',	
 );
 
 ?>
