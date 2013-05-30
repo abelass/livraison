@@ -19,27 +19,18 @@
 	<auteur lien='http://websimple.be/'>Rainer Müller</auteur>
 
 	<licence>GNU/GPL</licence>
+	
+	<necessite nom="saisies" compatibilite="[1.21.0;]" />
+	<necessite nom="shop" compatibilite="[1.2.2;]" />	
+	<necessite nom="pays" compatibilite="[2.1.1;]" />
+	<necessite nom="continents" compatibilite="[1.0.0;]" />
+	
 
-	<!--
-		Exemple de commandes
-		* dependances
-		<necessite nom="saisies" compatibilite="[1.21.0;]" />
-		<utilise nom="saisies" compatibilite="[1.21.0;]" />
-		<lib nom="simplehtmldom" lien="http://chemin_vers_archive.zip" />
-		* pipelines
-		<pipeline nom="autoriser" inclure="shop_livraison_autorisations.php" />
-		<pipeline nom="insert_head" inclure="shop_livraison_pipelines.php" />
-		* declarer un pipeline 
-		<pipeline nom="mon_pipeline" action="" />
-		* parents de menus de SPIP :
-				menu_accueil (A eviter), menu_edition, menu_publication,
-				menu_activite, menu_squelette, menu_administration, menu_configuration 
-		<menu nom="shop_livraison" titre="shop_livraison:shop_livraison_titre" parent="menu_edition"  icone="images/shop_livraison-16.png" />
-		* parents d'onglets... configuration, plugins, statistiques, ... 
-		<onglet nom="shop_livraison" titre="shop_livraison:shop_livraison_titre" parent="configuration" icone="images/shop_livraison-24.png" />
-	-->
 
 	<pipeline nom="autoriser" inclure="shop_livraison_autorisations.php" /> 
+	<pipeline nom="formulaire_traiter" inclure="shop_livraison_autorisations.php" />
+	<pipeline nom="formulaire_verifier" inclure="shop_livraison_autorisations.php" />			
+	<pipeline nom="formulaire_charger" inclure="shop_livraison_autorisations.php" />	
 	<pipeline nom="declarer_tables_principales" inclure="base/shop_livraison.php" />
 
 

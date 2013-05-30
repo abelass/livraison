@@ -10,9 +10,18 @@
 		#ACTION_FORMULAIRE{#ENV{action}}
 
 		<ul>
-			[(#SAISIE{input, exemple,
-				label=<:shop_livraison:cfg_exemple:>,
-				explication=<:shop_livraison:cfg_exemple_explication:>})]
+	         [(#SAISIE{textarea,zones_livraison,
+                label=<:livraison:selection_zones_livraison:>,
+                rows=5,
+                cols=5,
+                explication=<:livraison:explication_selection_zones_livraison:>,
+                }
+                )]
+	         [(#SAISIE{continents,continents,
+                label=<:livraison:selection_zones_livraison:>,
+                }
+                )]                
+             
 		</ul>
 
 		<input type="hidden" name="_meta_casier" value="shop_livraison" />
