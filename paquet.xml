@@ -1,21 +1,16 @@
 <paquet
 	prefix="shop_livraison"
 	categorie="communication"
-	version="1.0.0"
+	version="1.0.1"
 	etat="dev"
 	compatibilite="[3.0.10;3.0.*]"
 	logo="prive/themes/spip/images/shop_livraison-64.png"
 	documentation=""
 	schema="1.0.0" 
 >
-	<!--
-		Paquet genere le 2013-05-30 14:34:30
-		(Vous pouvez bien entendu supprimer ces commentaires) 
-	-->
-
 	<nom>Shop Livraisons</nom>
 
-	<!-- cette balise peut etre presente plusieurs fois s'il y a plusieurs auteurs --> 
+
 	<auteur lien='http://websimple.be/'>Rainer Müller</auteur>
 
 	<licence>GNU/GPL</licence>
@@ -23,14 +18,16 @@
 	<necessite nom="saisies" compatibilite="[1.21.0;]" />
 	<necessite nom="shop" compatibilite="[1.2.2;]" />	
 	<necessite nom="pays" compatibilite="[2.1.1;]" />
-	<necessite nom="continents" compatibilite="[1.0.0;]" />
+	<necessite nom="continents" compatibilite="[1.0.1;]" />
 	
 
 
 	<pipeline nom="autoriser" inclure="shop_livraison_autorisations.php" /> 
 	<pipeline nom="formulaire_traiter" inclure="shop_livraison_autorisations.php" />
 	<pipeline nom="formulaire_verifier" inclure="shop_livraison_autorisations.php" />			
-	<pipeline nom="formulaire_charger" inclure="shop_livraison_autorisations.php" />	
+	<pipeline nom="formulaire_charger" inclure="shop_livraison_autorisations.php" />
+	<pipeline nom="declarer_tables_objets_sql" inclure="base/shop_livraison.php" /> 
+	<pipeline nom="declarer_tables_interfaces" inclure="base/shop_livraison.php" /> 		
 	<pipeline nom="declarer_tables_principales" inclure="base/shop_livraison.php" />
 
 

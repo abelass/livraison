@@ -1,0 +1,28 @@
+<div class='formulaire_spip formulaire_editer formulaire_#FORM formulaire_#FORM-#ENV{id_livraison_montant,nouveau}'>
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+	[(#ENV{editable})
+	<form method='post' action='#ENV{action}'><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<input type='hidden' name='id_livraison_montant' value='#ENV{id_livraison_montant}' />
+		<ul>
+
+			[(#SAISIE{input, montant, obligatoire=oui,
+				label=<:livraison_montant:label_montant:>})]
+
+			[(#SAISIE{input, mesure_min,
+				label=<:livraison_montant:label_mesure_min:>,
+				explication=<:livraison_montant:explication_mesure_min:> })]
+
+			[(#SAISIE{input, mesure_max,
+				label=<:livraison_montant:label_mesure_max:>,
+				explication=<:livraison_montant:explication_mesure_max:> })]
+
+		</ul>
+		[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
+		<!--extra-->
+		<p class="boutons"><input type='submit' class='submit' value='<:bouton_enregistrer:>' /></p>
+	</div></form>
+	]
+</div>

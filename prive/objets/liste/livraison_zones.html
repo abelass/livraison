@@ -1,0 +1,34 @@
+[(#SET{defaut_tri,#ARRAY{
+	nom,1, 
+	id_livraison_zone,1,
+	points,-1
+}})]<B_liste_livraison_zones>
+#ANCRE_PAGINATION
+<div class="liste-objets livraison_zones">
+<table class='spip liste'>
+	[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{livraison_zone:info_1_livraison_zone,livraison_zone:info_nb_livraison_zones}})</strong></caption>]
+	<thead>
+		<tr class='first_row'>
+			<th class='picto' scope='col'></th>
+			<th class='nom' scope='col'>[(#TRI{nom,<:livraison_zone:label_nom:>,ajax})]</th>
+			<th class='id' scope='col'>[(#TRI{id_livraison_zone,<:info_numero_abbreviation:>,ajax})]</th>
+		</tr>
+	</thead>
+	<tbody>
+	<BOUCLE_liste_livraison_zones(LIVRAISON_ZONES){id_mot?}{id_auteur?}{where?}{recherche?}{tri #ENV{par,num nom},#GET{defaut_tri}}{par nom}{pagination #ENV{nb,10}}>
+		<tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
+			<td class='picto'>[(#CHEMIN_IMAGE{livraison_zone-16.png}|balise_img)]</td>
+			<td class='nom principale'>[(#LOGO_LIVRAISON_ZONE|image_reduire{20,26})]<a href="[(#ID_LIVRAISON_ZONE|generer_url_entite{livraison_zone})]" title="<:info_numero_abbreviation|attribut_html:> #ID_LIVRAISON_ZONE">[(#RANG). ]#NOM</a></td>
+			<td class='id'>[(#AUTORISER{modifier,livraison_zone,#ID_LIVRAISON_ZONE}|?{
+				<a href="[(#URL_ECRIRE{livraison_zone_edit,id_livraison_zone=#ID_LIVRAISON_ZONE})]">#ID_LIVRAISON_ZONE</a>,
+				#ID_LIVRAISON_ZONE
+			})]</td>
+		</tr>
+	</BOUCLE_liste_livraison_zones>
+	</tbody>
+</table>
+[<p class='pagination'>(#PAGINATION{prive})</p>]
+</div>
+</B_liste_livraison_zones>[
+<div class="liste-objets livraison_zones caption-wrap"><strong class="caption">(#ENV*{sinon,''})</strong></div>
+]<//B_liste_livraison_zones>
