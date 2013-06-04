@@ -1,10 +1,10 @@
 <paquet
-	prefix="shop_livraison"
+	prefix="shop_livraisons"
 	categorie="communication"
 	version="1.0.1"
 	etat="dev"
 	compatibilite="[3.0.10;3.0.*]"
-	logo="prive/themes/spip/images/shop_livraison-64.png"
+	logo="prive/themes/spip/images/shop_livraisons-64.png"
 	documentation=""
 	schema="1.0.0" 
 >
@@ -17,16 +17,17 @@
 	
 	<necessite nom="saisies" compatibilite="[1.21.0;]" />
 	<necessite nom="shop" compatibilite="[1.2.2;]" />	
+	<necessite nom="shop_prix" compatibilite="[1.4.1;]" />		
 	<necessite nom="pays" compatibilite="[2.1.1;]" />
 	<necessite nom="continents" compatibilite="[1.0.1;]" />
 	
 
 
-	<pipeline nom="autoriser" inclure="shop_livraison_autorisations.php" /> 
+	<pipeline nom="autoriser" inclure="shop_livraisons_autorisations.php" /> 
 
-	<pipeline nom="declarer_tables_objets_sql" inclure="base/shop_livraison.php" /> 
-	<pipeline nom="declarer_tables_interfaces" inclure="base/shop_livraison.php" /> 
-	<pipeline nom="declarer_tables_principales" inclure="base/shop_livraison.php" />
+	<pipeline nom="declarer_tables_objets_sql" inclure="base/shop_livraisons.php" /> 
+	<pipeline nom="declarer_tables_interfaces" inclure="base/shop_livraisons.php" /> 
+	<pipeline nom="declarer_tables_principales" inclure="base/shop_livraisons.php" />
 
 
 </paquet>

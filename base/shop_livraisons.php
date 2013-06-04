@@ -17,7 +17,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  * @return array
  *     Déclarations d'interface pour le compilateur
  */
-function shop_livraison_declarer_tables_interfaces($interfaces) {
+function shop_livraisons_declarer_tables_interfaces($interfaces) {
 
     $interfaces['table_des_tables']['livraison_montants'] = 'livraison_montants';
     $interfaces['table_des_tables']['livraison_zones'] = 'livraison_zones';
@@ -34,7 +34,7 @@ function shop_livraison_declarer_tables_interfaces($interfaces) {
  * @return array
  *     Description complétée des tables
  */
-function shop_livraison_declarer_tables_objets_sql($tables) {
+function shop_livraisons_declarer_tables_objets_sql($tables) {
 
     $tables['spip_livraison_montants'] = array(
         'type' => 'livraison_montant',
@@ -54,7 +54,7 @@ function shop_livraison_declarer_tables_objets_sql($tables) {
         ),
         'titre' => "montant AS titre, '' AS lang",
          #'date' => "",
-        'champs_editables'  => array('montant', 'mesure_min', 'mesure_max'),
+        'champs_editables'  => array('id_livraison_zone','montant', 'mesure_min', 'mesure_max'),
         'champs_versionnes' => array('montant', 'mesure_min', 'mesure_max'),
         'rechercher_champs' => array("montant" => 4),
         'tables_jointures'  => array('id_livraison_zone'),
@@ -91,7 +91,7 @@ function shop_livraison_declarer_tables_objets_sql($tables) {
 
 
 
-function shop_livraison_declarer_tables_principales($tables_principales){
+function shop_livraisons_declarer_tables_principales($tables_principales){
 
         $tables_principales['spip_commandes_details']['field']['livraison']= "tinyint(1) NOT NULL";
 
