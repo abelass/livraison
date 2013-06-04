@@ -10,9 +10,9 @@
 		#ACTION_FORMULAIRE{#ENV{action}}
 
 		<ul>
-			[(#SAISIE{input, exemple,
-				label=<:shop_livraison:cfg_exemple:>,
-				explication=<:shop_livraison:cfg_exemple_explication:>})]
+            [(#SAISIE{selection,unite_defaut,
+                label=<:livraison:label_unite_defaut:>,
+                datas=[(#ARRAY{'',<:livraison:label_unite_rien:>,g,<:livraison:label_unite_g:>,kg,<:livraison:label_unite_kg:>,cm3,<:livraison:label_unite_cm3:>,m3,<:livraison:label_unite_m3:>,cl,<:livraison:label_unite_cl:>,l,<:livraison:label_unite_l:>})]})]
 		</ul>
 
 		<input type="hidden" name="_meta_casier" value="shop_livraison" />
