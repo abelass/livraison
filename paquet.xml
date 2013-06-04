@@ -23,11 +23,9 @@
 
 
 	<pipeline nom="autoriser" inclure="shop_livraison_autorisations.php" /> 
-	<pipeline nom="formulaire_traiter" inclure="shop_livraison_autorisations.php" />
-	<pipeline nom="formulaire_verifier" inclure="shop_livraison_autorisations.php" />			
-	<pipeline nom="formulaire_charger" inclure="shop_livraison_autorisations.php" />
+
 	<pipeline nom="declarer_tables_objets_sql" inclure="base/shop_livraison.php" /> 
-	<pipeline nom="declarer_tables_interfaces" inclure="base/shop_livraison.php" /> 		
+	<pipeline nom="declarer_tables_interfaces" inclure="base/shop_livraison.php" /> 
 	<pipeline nom="declarer_tables_principales" inclure="base/shop_livraison.php" />
 
 

@@ -33,7 +33,7 @@ function shop_livraison_upgrade($nom_meta_base_version, $version_cible) {
 	# quelques exemples
 	# (que vous pouvez supprimer !)
 	# 
-	# 
+	# $maj['create'] = array(array('creer_base'));
 	#
 	# include_spip('inc/config')
 	# $maj['create'] = array(
@@ -48,7 +48,9 @@ function shop_livraison_upgrade($nom_meta_base_version, $version_cible) {
 	#	array('sql_alter','TABLE spip_xx CHANGE texte petit_texte mediumtext NOT NULL default \'\''),
 	# );
 	# ...
-    $maj['create'] = array(array('maj_tables', array('spip_commandes_details')));
+
+	$maj['create'] = array(array('maj_tables', array('spip_livraison_montants', 'spip_livraison_zones','spip_commandes_details')));
+
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
 }
@@ -72,6 +74,13 @@ function shop_livraison_vider_tables($nom_meta_base_version) {
 	# sql_drop_table("spip_xx");
 	# sql_drop_table("spip_xx_liens");
 
+	sql_drop_table("spip_livraison_montants");
+	sql_drop_table("spip_livraison_zones");
+
+	# Nettoyer les versionnages et forums
+	sql_delete("spip_versions",              sql_in("objet", array('spip_livraison_montant', 'spip_livraison_zone')));
+	sql_delete("spip_versions_fragments",    sql_in("objet", array('spip_livraison_montant', 'spip_livraison_zone')));
+	sql_delete("spip_forum",                 sql_in("objet", array('spip_livraison_montant', 'spip_livraison_zone')));
 
 	effacer_meta($nom_meta_base_version);
 }

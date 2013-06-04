@@ -36,7 +36,7 @@ function shop_livraison_declarer_tables_interfaces($interfaces) {
  */
 function shop_livraison_declarer_tables_objets_sql($tables) {
 
-    $tables['livraison_montants'] = array(
+    $tables['spip_livraison_montants'] = array(
         'type' => 'livraison_montant',
         'principale' => "oui", 
         'table_objet_surnoms' => array('livraisonmontant'), // table_objet('livraison_montant') => 'livraison_montants' 
@@ -47,22 +47,22 @@ function shop_livraison_declarer_tables_objets_sql($tables) {
             "mesure_min"         => "float",
             "mesure_max"         => "float",
             "maj"                => "timestamp",
-            "maj"                => "TIMESTAMP"
         ),
         'key' => array(
             "PRIMARY KEY"        => "id_livraison_montant",
+            "KEY"                => "id_livraison_zone",            
         ),
         'titre' => "montant AS titre, '' AS lang",
          #'date' => "",
         'champs_editables'  => array('montant', 'mesure_min', 'mesure_max'),
         'champs_versionnes' => array('montant', 'mesure_min', 'mesure_max'),
         'rechercher_champs' => array("montant" => 4),
-        'tables_jointures'  => array(),
+        'tables_jointures'  => array('id_livraison_zone'),
         
 
     );
 
-    $tables['livraison_zones'] = array(
+    $tables['spip_livraison_zones'] = array(
         'type' => 'livraison_zone',
         'principale' => "oui", 
         'table_objet_surnoms' => array('livraisonzone'), // table_objet('livraison_zone') => 'livraison_zones' 
@@ -72,7 +72,6 @@ function shop_livraison_declarer_tables_objets_sql($tables) {
             "descriptif"         => "text NOT NULL DEFAULT ''",
             "unite"              => "varchar(25) NOT NULL DEFAULT ''",
             "maj"                => "timestamp",
-            "maj"                => "TIMESTAMP"
         ),
         'key' => array(
             "PRIMARY KEY"        => "id_livraison_zone",
@@ -82,7 +81,7 @@ function shop_livraison_declarer_tables_objets_sql($tables) {
         'champs_editables'  => array('nom', 'descriptif', 'unite'),
         'champs_versionnes' => array('nom', 'descriptif', 'unite'),
         'rechercher_champs' => array("nom" => 8, "descriptif" => 4),
-        'tables_jointures'  => array('livraison_zones_liens'),
+        'tables_jointures'  => array(),
         
 
     );
