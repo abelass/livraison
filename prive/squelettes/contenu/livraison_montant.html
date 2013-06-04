@@ -42,5 +42,5 @@
 	<script type="text/javascript">/*<!\\[CDATA\\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin');/*\\]\\]>*/</script>
 ]
 </BOUCLE_livraison_montant>
-[(#ENV**{exec}|=={livraison_montant_edit}|?{#INCLURE{fond=prive/squelettes/contenu/livraison_montant_edit,redirect='',env,retourajax=oui},#REM|sinon_interdire_acces})]
+[(#ENV**{exec}|=={livraison_montant_edit}|?{#INCLURE{fond=prive/squelettes/contenu/livraison_montant_edit,redirect=#ENV{redirect,''},env,retourajax=oui},#REM|sinon_interdire_acces})]
 <//B_livraison_montant>

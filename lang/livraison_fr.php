@@ -24,7 +24,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'label_unite_m3'=>'m3',            
 
 	// T
-	'titre_livraison' => 'Livraisons',
+	'titre_livraison' => 'Livraison',
+	'titre_livraisons' => 'Livraisons',	
 	'titre_page_configurer_shop_livraison' => 'Shop Livraisons',	
 );
 

@@ -59,7 +59,11 @@ function formulaires_editer_livraison_zone_identifier_dist($id_livraison_zone='n
  *     Environnement du formulaire
  */
 function formulaires_editer_livraison_zone_charger_dist($id_livraison_zone='new', $retour='', $lier_trad=0, $config_fonc='', $row=array(), $hidden=''){
+    include_spip('inc/config');
+    $config=lire_config('shop_livraison',array());
+
 	$valeurs = formulaires_editer_objet_charger('livraison_zone',$id_livraison_zone,'',$lier_trad,$retour,$config_fonc,$row,$hidden);
+    if(empty($valeurs['unite'])) $valeurs['unite']=$config['unite_defaut']?$config['unite_defaut']:'';  
 	return $valeurs;
 }
 

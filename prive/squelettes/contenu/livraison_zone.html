@@ -26,16 +26,15 @@
 
 <div class="nettoyeur"></div>
 
-[(#AUTORISER{modifier,livraison_zone,#ID_LIVRAISON_ZONE})
-	[(#ID_LIVRAISON_ZONE|afficher_qui_edite{livraison_zone}|non)
-		[(#URL_ECRIRE{livraison_zone_edit,id_livraison_zone=#ID_LIVRAISON_ZONE}|icone_verticale{<:livraison_zone:icone_modifier_livraison_zone:>,livraison_zone,edit,right ajax preload})]
-	]
-	[(#ID_LIVRAISON_ZONE|afficher_qui_edite{livraison_zone}|oui)
-		[(#URL_ECRIRE{livraison_zone_edit,id_livraison_zone=#ID_LIVRAISON_ZONE}|icone_verticale{#ID_LIVRAISON_ZONE|afficher_qui_edite{livraison_zone},warning-24,'',right edition_deja ajax preload})]
-	]
+
+[(#AUTORISER{creer,livraison_montant})
+    [(#URL_ECRIRE{livraison_montant_edit,new=oui&id_livraison_zone=#ID_LIVRAISON_ZONE}|parametre_url{&redirect,#SELF}|icone_verticale{<:livraison_montant:texte_ajouter_livraison_montant:>,livraison_montant,new,right})]
 ]
+<INCLURE{fond=prive/objets/liste/livraison_montants, par=montant, env, ajax, sinon=<:livraison_montant:info_aucun_livraison_montant:>}>
 
 #PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,livraison_zone,id,#ID_LIVRAISON_ZONE},data,'<div class="nettoyeur"></div>'}}
+
+
 
 #BOITE_FERMER
 [(#EVAL{_AJAX}|oui)

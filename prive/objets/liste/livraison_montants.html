@@ -18,7 +18,7 @@
 	<BOUCLE_liste_livraison_montants(LIVRAISON_MONTANTS){id_livraison_zone?}{id_mot?}{id_auteur?}{where?}{recherche?}{tri #ENV{par,num montant},#GET{defaut_tri}}{par montant}{pagination #ENV{nb,10}}>
 		<tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
 			<td class='picto'>[(#CHEMIN_IMAGE{livraison_montant-16.png}|balise_img)]</td>
-			<td class='montant principale'>[(#LOGO_LIVRAISON_MONTANT|image_reduire{20,26})]<a href="[(#ID_LIVRAISON_MONTANT|generer_url_entite{livraison_montant})]" title="<:info_numero_abbreviation|attribut_html:> #ID_LIVRAISON_MONTANT">[(#RANG). ]#MONTANT</a></td>
+			<td class='montant principale'>[(#LOGO_LIVRAISON_MONTANT|image_reduire{20,26})]<a href="[(#ID_LIVRAISON_MONTANT|generer_url_entite{livraison_montant})]" title="<:info_numero_abbreviation|attribut_html:> #ID_LIVRAISON_MONTANT">[(#RANG). ][(#MONTANT|devise_defaut_prix)]</a></td>
 			<td class='id'>[(#AUTORISER{modifier,livraison_montant,#ID_LIVRAISON_MONTANT}|?{
 				<a href="[(#URL_ECRIRE{livraison_montant_edit,id_livraison_montant=#ID_LIVRAISON_MONTANT})]">#ID_LIVRAISON_MONTANT</a>,
 				#ID_LIVRAISON_MONTANT
