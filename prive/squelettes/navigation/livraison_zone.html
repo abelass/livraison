@@ -1,0 +1,15 @@
+<B_livraison_zone>
+[(#BOITE_OUVRIR{
+    [(#CHEMIN_IMAGE{shop_livraisons-32.png}|balise_img{'','cadre-icone'})]
+    
+,'simple personnel'})]
+<BOUCLE_livraison_zone(LIVRAISON_ZONES){id_livraison_zone}>
+<div class='infos'>
+[(#SET{texte_objet,<:livraison_zone:titre_livraison_zone:>})]
+<div class='numero'><:titre_cadre_numero_objet{objet=#GET{texte_objet}}:><p>#ID_LIVRAISON_ZONE</p></div>
+
+</div>
+</BOUCLE_livraison_zone>
+[(#PIPELINE{shop_affiche_gauche_shortcuts})]
+#BOITE_FERMER
+</B_livraison_zone>

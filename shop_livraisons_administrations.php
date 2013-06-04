@@ -28,7 +28,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  *     Version du schéma de données dans ce plugin (déclaré dans paquet.xml)
  * @return void
 **/
-function shop_livraison_upgrade($nom_meta_base_version, $version_cible) {
+function shop_livraisons_upgrade($nom_meta_base_version, $version_cible) {
 	$maj = array();
 	# quelques exemples
 	# (que vous pouvez supprimer !)
@@ -68,7 +68,7 @@ function shop_livraison_upgrade($nom_meta_base_version, $version_cible) {
  *     Nom de la meta informant de la version du schéma de données du plugin installé dans SPIP
  * @return void
 **/
-function shop_livraison_vider_tables($nom_meta_base_version) {
+function shop_livraisons_vider_tables($nom_meta_base_version) {
 	# quelques exemples
 	# (que vous pouvez supprimer !)
 	# sql_drop_table("spip_xx");

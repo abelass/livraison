@@ -20,7 +20,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 /**
  * Fonction d'appel pour le pipeline
  * @pipeline autoriser */
-function shop_livraison_autoriser(){}
+function shop_livraisons_autoriser(){}
 
 
 /* Exemple
