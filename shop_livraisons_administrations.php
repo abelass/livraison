@@ -50,8 +50,8 @@ function shop_livraisons_upgrade($nom_meta_base_version, $version_cible) {
 	# ...
 
 	$maj['create'] = array(array('maj_tables', array('spip_livraison_montants', 'spip_livraison_zones','spip_commandes_details','spip_pays')));
-    
 	$maj['1.0.1'] = array(array('maj_tables', array('spip_pays')));
+    
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
 }

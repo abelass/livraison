@@ -18,7 +18,7 @@
 	<BOUCLE_liste_livraison_zones(LIVRAISON_ZONES){id_mot?}{id_auteur?}{where?}{recherche?}{tri #ENV{par,num nom},#GET{defaut_tri}}{par nom}{pagination #ENV{nb,10}}>
 		<tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
 			<td class='picto'>[(#CHEMIN_IMAGE{livraison_zone-16.png}|balise_img)]</td>
-			<td class='nom principale'>[(#LOGO_LIVRAISON_ZONE|image_reduire{20,26})]<a href="[(#ID_LIVRAISON_ZONE|generer_url_entite{livraison_zone})]" title="<:info_numero_abbreviation|attribut_html:> #ID_LIVRAISON_ZONE">[(#RANG). ]#NOM</a></td>
+			<td class='nom principale'>[(#LOGO_LIVRAISON_ZONE|image_reduire{20,26})]<a href="[(#ID_LIVRAISON_ZONE|generer_url_entite{livraison_zone})]" title="<:info_numero_abbreviation|attribut_html:> #ID_LIVRAISON_ZONE">[(#RANG). ][(#NOM)]</a></td>
 			<td class='id'>[(#AUTORISER{modifier,livraison_zone,#ID_LIVRAISON_ZONE}|?{
 				<a href="[(#URL_ECRIRE{livraison_zone_edit,id_livraison_zone=#ID_LIVRAISON_ZONE})]">#ID_LIVRAISON_ZONE</a>,
 				#ID_LIVRAISON_ZONE

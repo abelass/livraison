@@ -1,0 +1,13 @@
+<INCLURE{fond=prive/squelettes/inclure/continents,env}/>
+
+<script type="text/javascript">
+function update_agenda(link){
+    var date_debut = parametre_url(jQuery(link).attr('href'),'date_debut');
+    $("#liste_des_reservations").ajaxReload({args:{date_debut:date_debut,debut_liste_reservations:""},history:true});
+    jQuery(link).closest('.box').find('li.on').removeClass('on');
+    jQuery(link).closest('li').addClass('on');
+    return false;
+}
+</script>
+
+
