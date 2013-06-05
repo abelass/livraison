@@ -10,6 +10,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'ajouter_lien_livraison_zone' => 'Ajouter cette zone de livraison',
 
 	// E
+    'eliminer_livraison_zone' => 'Eliminer cette zone de livraison',	
 	'explication_unite' => 'Surcharge la valeur définit par défaut, à changer uniquement si vous devez définir une unité différent pour cette zone',
 
 	// I
@@ -27,7 +28,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_unite' => 'Unité',
 
 	// R
-	'retirer_lien_livraison_zone' => 'Retirer cette zone de livraison',
+
 	'retirer_tous_liens_livraison_zones' => 'Retirer toutes les zones de livraison',
 
 	// T
