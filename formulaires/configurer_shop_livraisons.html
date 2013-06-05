@@ -10,6 +10,12 @@
 		#ACTION_FORMULAIRE{#ENV{action}}
 
 		<ul>
+		    
+            [(#SAISIE{input,montant_defaut,
+                label=<:livraison:label_montant_defaut:>,
+                explication=<:livraison:explication_montant_defaut:>
+                })]		    
+		    
             [(#SAISIE{selection,unite_defaut,
                 label=<:livraison:label_unite_defaut:>,
                 datas=[(#ARRAY{'',<:livraison:label_unite_rien:>,g,<:livraison:label_unite_g:>,kg,<:livraison:label_unite_kg:>,cm3,<:livraison:label_unite_cm3:>,m3,<:livraison:label_unite_m3:>,cl,<:livraison:label_unite_cl:>,l,<:livraison:label_unite_l:>})]})]
