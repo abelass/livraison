@@ -6,7 +6,7 @@
 	compatibilite="[3.0.10;3.0.*]"
 	logo="prive/themes/spip/images/shop_livraisons-64.png"
 	documentation=""
-	schema="1.0.0" 
+	schema="1.0.1" 
 >
 	<nom>Shop Livraisons</nom>
 
