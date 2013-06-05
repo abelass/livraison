@@ -7,7 +7,7 @@
 <li class='item[ (#EXPOSE)] continent'>
     #SET{var,#ID_CONTINENT}
     [(#EXPOSE|oui)#SET{var,''}]
-    <a href="[(#GET{self}|parametre_url{id_continent,[(#GET{var})]})]">#NOM</a>
+    <a class="ajax" href="[(#GET{self}|parametre_url{id_continent,[(#GET{var})]})]">#NOM</a>
     [(#ENV{id_livraison_zone}|oui)<a class="ajax" href="[(#URL_ACTION_AUTEUR{gestion_zones,ajouter_pays_continent-#ENV{id_livraison_zone}-#ID_CONTINENT,[(#SELF|parametre_url{action_ok,ok})]})]" title="<:livraison:titre_ajouter_pays_continent:>"><img src="[(#CHEMIN_IMAGE{ajouter-16.png})]" alt="plus"/></a>]
 </li>
     <B_pays>
