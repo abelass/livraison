@@ -63,7 +63,8 @@ function formulaires_editer_livraison_zone_charger_dist($id_livraison_zone='new'
     $config=lire_config('shop_livraison',array());
 
 	$valeurs = formulaires_editer_objet_charger('livraison_zone',$id_livraison_zone,'',$lier_trad,$retour,$config_fonc,$row,$hidden);
-    if(empty($valeurs['unite'])) $valeurs['unite']=$config['unite_defaut']?$config['unite_defaut']:'';  
+ 
+    if(!intval($id_livraison_zone) AND empty($valeurs['unite'])) $valeurs['unite']=$config['unite_defaut']?$config['unite_defaut']:'';  
 	return $valeurs;
 }
 
