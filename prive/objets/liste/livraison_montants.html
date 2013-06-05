@@ -11,7 +11,10 @@
 		<tr class='first_row'>
 			<th class='picto' scope='col'></th>
 			<th class='montant' scope='col'>[(#TRI{montant,<:livraison_montant:label_montant:>,ajax})]</th>
+			<th class='mesure_min' scope='col'><:livraison_montant:label_mesure_min:></th>
+			<th class='mesure_max' scope='col'><:livraison_montant:label_mesure_max:></th>						
 			<th class='id' scope='col'>[(#TRI{id_livraison_montant,<:info_numero_abbreviation:>,ajax})]</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -19,10 +22,16 @@
 		<tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
 			<td class='picto'>[(#CHEMIN_IMAGE{livraison_montant-16.png}|balise_img)]</td>
 			<td class='montant principale'>[(#LOGO_LIVRAISON_MONTANT|image_reduire{20,26})]<a href="[(#ID_LIVRAISON_MONTANT|generer_url_entite{livraison_montant})]" title="<:info_numero_abbreviation|attribut_html:> #ID_LIVRAISON_MONTANT">[(#RANG). ][(#MONTANT|devise_defaut_prix)]</a></td>
+			#SET{unite,#ID_LIVRAISON_ZONE|unite_mesure}
+			<td class="mesure_min">[(#MESURE_MIN) #GET{unite}]</td>
+            <td class="mesure_max">[(#MESURE_MAX) #GET{unite}]</td>			
 			<td class='id'>[(#AUTORISER{modifier,livraison_montant,#ID_LIVRAISON_MONTANT}|?{
 				<a href="[(#URL_ECRIRE{livraison_montant_edit,id_livraison_montant=#ID_LIVRAISON_MONTANT})]">#ID_LIVRAISON_MONTANT</a>,
 				#ID_LIVRAISON_MONTANT
 			})]</td>
+			<td>
+			    <a class="ajax" href="[(#URL_ACTION_AUTEUR{gestion_zones,eliminer_montant-#ID_LIVRAISON_MONTANT,#SELF})]" title="<:livraison_montant:eliminer_livraison_montant:>"><img src="[(#CHEMIN_IMAGE{del-16.png})]" alt="moins"/></a>
+			</td>
 		</tr>
 	</BOUCLE_liste_livraison_montants>
 	</tbody>
