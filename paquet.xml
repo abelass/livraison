@@ -28,6 +28,8 @@
 	<pipeline nom="declarer_tables_objets_sql" inclure="base/shop_livraisons.php" /> 
 	<pipeline nom="declarer_tables_interfaces" inclure="base/shop_livraisons.php" /> 
 	<pipeline nom="declarer_tables_principales" inclure="base/shop_livraisons.php" />
+	
+	<pipeline nom="post_insertion" inclure="shop_livraisons_pipelines.php" />	
 
 
 </paquet>
