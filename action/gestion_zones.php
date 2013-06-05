@@ -33,7 +33,7 @@ function action_gestion_zones_dist($arg=null) {
                     
             break;  
         case 'eliminer_montant':
-                sql_delete('spip_livraison_montant','id_livraison_montant='.$id);
+                sql_delete('spip_livraison_montants','id_livraison_montant='.$id);
                     
             break;  
                                                              
