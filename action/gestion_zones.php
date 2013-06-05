@@ -17,15 +17,26 @@ function action_gestion_zones_dist($arg=null) {
     include_spip('inc/config');
 
     //Les variables
-    list($action,$id_livraison_zone,$id_objet)= explode("-",$arg);    
+    list($action,$id,$id_objet)= explode("-",$arg);    
 
     switch ($action) {
         case 'ajouter_pays_continent':
-                sql_updateq('spip_pays',array('id_livraison_zone'=>$id_livraison_zone),'id_continent='.$id_objet);
+                sql_updateq('spip_pays',array('id_livraison_zone'=>$id),'id_continent='.$id_objet);
             break;
         case 'ajouter_pays':
-                sql_updateq('spip_pays',array('id_livraison_zone'=>$id_livraison_zone),'id_pays='.$id_objet);
-            break;        
+                sql_updateq('spip_pays',array('id_livraison_zone'=>$id),'id_pays='.$id_objet);
+            break;  
+        case 'eliminer_zone':
+                sql_delete('spip_livraison_zones','id_livraison_zone='.$id);
+                sql_delete('spip_livraison_montants','id_livraison_zone='.$id);            
+                sql_updateq('spip_pays',array('id_livraison_zone'=>'0'),'id_livraison_zone='.$id);
+                    
+            break;  
+        case 'eliminer_montant':
+                sql_delete('spip_livraison_montant','id_livraison_montant='.$id);
+                    
+            break;  
+                                                             
 
     }
 
