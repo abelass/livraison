@@ -27,7 +27,7 @@ function shop_livraisons_post_insertion($flux){
     
     if(!$prix_unitaire_ht=$montant['montant']){
         include_spip('inc/config');
-        $prix_unitaire_ht=lire_config('shop_livraison/montan_defaut');
+        $prix_unitaire_ht=lire_config('shop_livraison/montant_defaut');
     }
 
       sql_insertq(
