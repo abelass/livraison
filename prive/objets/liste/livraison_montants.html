@@ -22,9 +22,20 @@
 		<tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
 			<td class='picto'>[(#CHEMIN_IMAGE{livraison_montant-16.png}|balise_img)]</td>
 			<td class='montant principale'>[(#LOGO_LIVRAISON_MONTANT|image_reduire{20,26})]<a href="[(#ID_LIVRAISON_MONTANT|generer_url_entite{livraison_montant})]" title="<:info_numero_abbreviation|attribut_html:> #ID_LIVRAISON_MONTANT">[(#RANG). ][(#MONTANT|devise_defaut_prix)]</a></td>
+			
 			#SET{unite,#ID_LIVRAISON_ZONE|unite_mesure}
-			<td class="mesure_min">[(#MESURE_MIN) #GET{unite}]</td>
-            <td class="mesure_max">[(#MESURE_MAX) #GET{unite}]</td>			
+			<td class="mesure_min">[(#MESURE_MIN|>{0}|?{
+			     [(#MESURE_MIN)] [(#GET{unite})],
+			     [(#MESURE_MIN)]
+			 })]
+			</td>
+            <td class="mesure_max">
+                [(#MESURE_MAX|>{0}|?{
+                 [(#MESURE_MAX)]    [(#GET{unite})]
+                    ,
+                 [(#MESURE_MAX)]   
+                    }) ]
+            </td>			
 			<td class='id'>[(#AUTORISER{modifier,livraison_montant,#ID_LIVRAISON_MONTANT}|?{
 				<a href="[(#URL_ECRIRE{livraison_montant_edit,id_livraison_montant=#ID_LIVRAISON_MONTANT})]">#ID_LIVRAISON_MONTANT</a>,
 				#ID_LIVRAISON_MONTANT

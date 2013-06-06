@@ -30,6 +30,8 @@
 [(#AUTORISER{creer,livraison_montant})
     [(#URL_ECRIRE{livraison_montant_edit,new=oui&id_livraison_zone=#ID_LIVRAISON_ZONE}|parametre_url{&redirect,#SELF}|icone_verticale{<:livraison_montant:texte_ajouter_livraison_montant:>,livraison_montant,new,right})]
 ]
+
+[(#REM) Les montants attachés]
 <INCLURE{fond=prive/objets/liste/livraison_montants, par=montant, env, ajax, sinon=<:livraison_montant:info_aucun_livraison_montant:>}>
 
 #PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,livraison_zone,id,#ID_LIVRAISON_ZONE},data,'<div class="nettoyeur"></div>'}}
@@ -38,9 +40,15 @@
 
 #BOITE_FERMER
 
-<div class="ajax">
-#FORMULAIRE_PAYS_ZONE
-</div>
+[(#REM) Les pays attachés avec son formulaire]
+[(#BOITE_OUVRIR{ <h2><:livraison_zone:titre_pays_zones:></h2>[(#CHEMIN_IMAGE{pays-24.png}|balise_img{pays,cadre-icone})]
+
+,simple fiche_objet})]
+    
+    <div class="ajax">
+        #FORMULAIRE_PAYS_ZONE
+    </div>
+#BOITE_FERMER
 [(#EVAL{_AJAX}|oui)
 	<script type="text/javascript">/*<!\\[CDATA\\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin');/*\\]\\]>*/</script>
 ]

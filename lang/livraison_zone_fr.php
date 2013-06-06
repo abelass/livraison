@@ -40,6 +40,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_livraison_zones' => 'Zones de livraison',
 	'titre_livraison_zones_rubrique' => 'Zones de livraison de la rubrique',
 	'titre_logo_livraison_zone' => 'Logo de cette zone de livraison',
+	'titre_pays_zones' => 'Les pays de cette zone de livraison',	
 );
 
 ?>
