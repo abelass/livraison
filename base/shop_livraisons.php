@@ -43,9 +43,9 @@ function shop_livraisons_declarer_tables_objets_sql($tables) {
         'field'=> array(
             "id_livraison_montant" => "bigint(21) NOT NULL",
             "id_livraison_zone"  => "bigint(21) NOT NULL DEFAULT 0",
-            "montant"            => "float",
-            "mesure_min"         => "float",
-            "mesure_max"         => "float",
+            "montant"            => "float NOT NULL DEFAULT 0",
+            "mesure_min"         => "float NOT NULL DEFAULT 0",
+            "mesure_max"         => "float NOT NULL DEFAULT 0",
             "maj"                => "timestamp",
         ),
         'key' => array(
