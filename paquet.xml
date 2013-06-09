@@ -10,7 +10,6 @@
 >
 	<nom>Shop Livraisons</nom>
 
-
 	<auteur lien='http://websimple.be/'>Rainer Müller</auteur>
 
 	<licence>GNU/GPL</licence>
@@ -21,8 +20,6 @@
 	<necessite nom="pays" compatibilite="[2.1.1;]" />
 	<necessite nom="continents" compatibilite="[1.0.1;]" />
 	
-
-
 	<pipeline nom="autoriser" inclure="shop_livraisons_autorisations.php" /> 
 
 	<pipeline nom="declarer_tables_objets_sql" inclure="base/shop_livraisons.php" /> 
@@ -30,6 +27,4 @@
 	<pipeline nom="declarer_tables_principales" inclure="base/shop_livraisons.php" />
 	
 	<pipeline nom="post_insertion" inclure="shop_livraisons_pipelines.php" />	
-
-
 </paquet>
