@@ -106,11 +106,12 @@ function shop_livraisons_declarer_champs_extras($champs = array()) {
     //Les objets choisis dans shop_prix    
     include_spip('inc/config');
     include_spip('shop_livraisons_fonctions');    
-
+    include_spip('shop_prix_fonctions');
+    
     $objets_prix=lire_config('shop_prix/objets_prix',array());
     $unite_defaut=lire_config('shop_livraison/unite_defaut',array()); 
     $mesure_defaut=mesure_defaut(); 
-    include_spip('shop_prix_fonctions');
+
     
 
     /*Pour chaque objet prix on active le champ mesure*/
