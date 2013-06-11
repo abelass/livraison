@@ -38,8 +38,8 @@ function unites_dispos(){
 
 // Charge la mesure par défaut
 function mesure_defaut(){
-    $unite_defaut=unite_defaut();
-    if($unite_defaut) mesure_unite($unite_defaut) ;
+    $unite_defaut=unite_defaut(); 
+    if($unite_defaut) return mesure_unite($unite_defaut) ;
     return ;
 }
 

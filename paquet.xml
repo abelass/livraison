@@ -1,7 +1,7 @@
 <paquet
 	prefix="shop_livraisons"
 	categorie="communication"
-	version="1.1.0"
+	version="1.1.1"
 	etat="dev"
 	compatibilite="[3.0.10;3.0.*]"
 	logo="prive/themes/spip/images/shop_livraisons-64.png"
