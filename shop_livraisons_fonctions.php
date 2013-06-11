@@ -26,7 +26,7 @@ function unite_mesure($id_livraison_zone,$mesure='',$brute=false){
 // Charge l'unité par défaut
 function unite_defaut(){
     include_spip('inc/config');
-    $unite_defaut=lire_config('shop_livraison/unite_defaut'); 
+    $unite_defaut=lire_config('shop_livraison/unite_defaut',''); 
     return $unite_defaut;
 }
 
@@ -38,8 +38,9 @@ function unites_dispos(){
 
 // Charge la mesure par défaut
 function mesure_defaut(){
-    $unite_defaut=unite_defaut();  
-    return $mesure_defaut=mesure_unite($unite_defaut);
+    $unite_defaut=unite_defaut();
+    if($unite_defaut) mesure_unite($unite_defaut) ;
+    return ;
 }
 
 
