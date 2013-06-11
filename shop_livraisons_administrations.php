@@ -30,27 +30,16 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 **/
 function shop_livraisons_upgrade($nom_meta_base_version, $version_cible) {
 	$maj = array();
-	# quelques exemples
-	# (que vous pouvez supprimer !)
-	# 
-	# $maj['create'] = array(array('creer_base'));
-	#
-	# include_spip('inc/config')
-	# $maj['create'] = array(
-	#	array('maj_tables', array('spip_xx', 'spip_xx_liens')),
-	#	array('ecrire_config', array('shop_livraison', array('exemple' => "Texte de l'exemple")))
-	#);
-	#
-	# $maj['1.1.0']  = array(array('sql_alter','TABLE spip_xx RENAME TO spip_yy'));
-	# $maj['1.2.0']  = array(array('sql_alter','TABLE spip_xx DROP COLUMN id_auteur'));
-	# $maj['1.3.0']  = array(
-	#	array('sql_alter','TABLE spip_xx CHANGE numero numero int(11) default 0 NOT NULL'),
-	#	array('sql_alter','TABLE spip_xx CHANGE texte petit_texte mediumtext NOT NULL default \'\''),
-	# );
-	# ...
 
+    /*Installation des tables et champs aditionnels*/
 	$maj['create'] = array(array('maj_tables', array('spip_livraison_montants', 'spip_livraison_zones','spip_commandes_details','spip_pays')));
 	$maj['1.0.1'] = array(array('maj_tables', array('spip_pays')));
+    
+    /*Installation de champs via le plugin champs extras*/
+    include_spip('inc/cextras');
+    include_spip('base/shop_livraisons');
+    cextras_api_upgrade(shop_livraisons_declarer_champs_extras(), $maj['create']);   
+    cextras_api_upgrade(shop_livraisons_declarer_champs_extras(), $maj['1.1.5']);
     
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);

@@ -22,4 +22,27 @@ function unite_mesure($id_livraison_zone,$mesure=''){
     return $unite;
 }
 
+// Charge le tableau des mesures et unités
+function unites_dipos(){
+    $unites=charger_fonction('unites','inc');
+    $unites=$unites();
+    return $unites;
+}
+
+// Charge la mesure par défaut
+function mesure_defaut(){
+    include_spip('inc/config');
+    $unite_defaut=lire_config('shop_livraison/unite_defaut'); 
+    $unites=unites_dipos();
+    if($unite_defaut){
+      foreach($unites AS $mesure=>$unite){
+           if(array_key_exists($unite_defaut,$unite))$mesure_defaut=$mesure;
+        }
+    }
+
+
+    return $mesure_defaut;
+}
+
+
 ?>

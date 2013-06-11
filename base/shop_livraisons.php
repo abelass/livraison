@@ -103,4 +103,39 @@ function shop_livraisons_declarer_tables_principales($tables_principales){
 
 }
 
+function shop_livraisons_declarer_champs_extras($champs = array()) {
+
+    //Les objets choisis dans shop_prix    
+    include_spip('inc/config');
+    include_spip('shop_livraisons_fonctions');    
+
+    $objets_prix=lire_config('shop_prix/objets_prix',array());
+    $unite_defaut=lire_config('shop_livraison/unite_defaut',array()); 
+    $mesure_defaut=mesure_defaut(); 
+    include_spip('shop_prix_fonctions');
+    
+
+    /*Pour chaque objet prix on active le champ mesure*/
+    foreach($objets_prix AS $objet){
+        $restriction=array();
+        if($objet=='article')$restriction=rubrique_prix();
+
+       $champs[table_objet_sql($objet)]['mesure'] = array(
+          'saisie' => 'input',//Type du champ (voir plugin Saisies)
+          'options' => array(
+                'nom' => 'mesure', 
+                'label' => _T('livraison:label_mesure_'.$mesure_defaut), 
+                'explication'=>_T('livraison:explication__mesure',array('unite'=>$unite_defaut)), 
+                'sql' => "text NOT NULL DEFAULT ''",
+                'versionner' => true,                                 
+                'restrictions'=>array(
+                    'rubrique' => implode(':',$restriction), 
+                    'voir' => array('auteur' => ''),//Tout le monde peut voir
+                    'modifier' => array('auteur' => 'admin'),//Seuls les administrateurs peuvent modifier
+                    )
+                )  
+            );
+        }
+    return $champs;
+    }
 ?>

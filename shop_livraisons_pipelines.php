@@ -57,5 +57,21 @@ function shop_livraisons_post_insertion($flux){
     return $flux;
 }
 
+function shop_livraisons_formulaire_traiter($flux){
+    
+    // Installer des champs extras après la configuration prix
+    if ($flux['args']['form'] == 'configurer_shop_prix') {
+
+    /*Installation de champs via le plugin champs extras*/
+    include_spip('inc/cextras');
+    include_spip('base/shop_livraisons');
+    $maj_item = array();
+    foreach(shop_livraisons_declarer_champs_extras() as $table=>$champs) {
+        champs_extras_creer($table, $champs);
+        } 
+    }
+ 
+    return $flux;
+}
 
 ?>
