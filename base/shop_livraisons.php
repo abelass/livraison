@@ -91,8 +91,6 @@ function shop_livraisons_declarer_tables_objets_sql($tables) {
 
 function shop_livraisons_declarer_tables_principales($tables_principales){
 
-        $tables_principales['spip_commandes_details']['field']['livraison']= "tinyint(1) NOT NULL";
-        
         $tables_principales['spip_pays']=array(
             'field'=>array('id_livraison_zone'=>"BIGINT NOT NULL"),
             'key'=>array('KEY id_livraison_zone'=>"id_livraison_zone"),        
