@@ -12,15 +12,14 @@
 
 			[(#SAISIE{input, montant, obligatoire=oui,
 				label=<:livraison_montant:label_montant:>})]
-            [(#UNITE|oui)
 			[(#SAISIE{input, mesure_min,
-				label=<:livraison_montant:label_mesure_min:>,
-				explication=<:livraison_montant:explication_mesure_min{unite=#UNITE}:> })]
+				label=[(#VAL{livraison_montant:label_mesure_min[_(#MESURE_DEFAUT)]}|_T)],
+				explication=<:livraison_montant:explication_mesure_min{unite=#UNITE}:>,
+				defaut=0})]
 
-			[(#SAISIE{input, mesure_max,
-				label=<:livraison_montant:label_mesure_max:>,
+			[(#SAISIE{input, mesure_max, obligatoire=oui,
+				label=[(#VAL{livraison_montant:label_mesure_max[_(#MESURE_DEFAUT)]}|_T)],
 				explication=<:livraison_montant:explication_mesure_max{unite=#UNITE}:> })]
-            ]
 		</ul>
 		[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
 		<!--extra-->

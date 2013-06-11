@@ -61,12 +61,15 @@ function formulaires_editer_livraison_montant_identifier_dist($id_livraison_mont
 function formulaires_editer_livraison_montant_charger_dist($id_livraison_montant='new', $retour='', $lier_trad=0, $config_fonc='', $row=array(), $hidden=''){
     include_spip('inc/config');
     $config=lire_config('shop_livraison',array());
+    
 	$valeurs = formulaires_editer_objet_charger('livraison_montant',$id_livraison_montant,'',$lier_trad,$retour,$config_fonc,$row,$hidden);
+
 if($id_livraison_zone=_request('id_livraison_zone') OR $id_livraison_zone=$valeurs['id_livraison_zone']){
         $valeurs['id_livraison_zone']=$id_livraison_zone;
         $valeurs['unite']=sql_getfetsel('unite','spip_livraison_zones','id_livraison_zone='.$id_livraison_zone);
+        $valeurs['mesure_defaut']=mesure_unite($valeurs['unite']);
         }
-    
+
 	return $valeurs;
 }
 
@@ -95,7 +98,7 @@ if($id_livraison_zone=_request('id_livraison_zone') OR $id_livraison_zone=$valeu
 function formulaires_editer_livraison_montant_verifier_dist($id_livraison_montant='new', $retour='', $lier_trad=0, $config_fonc='', $row=array(), $hidden=''){
     $obligatoires=array('montant','id_livraison_zone');
      if($id_livraison_zone=_request('id_livraison_zone') AND $unite=sql_getfetsel('unite','spip_livraison_zones','id_livraison_zone='.$id_livraison_zone)){
-        $obligatoires=array_merge($obligatoires,array('mesure_min','mesure_max'));
+        $obligatoires=array_merge($obligatoires,array('mesure_max'));
         }
     $erreurs=formulaires_editer_objet_verifier('livraison_montant',$id_livraison_montant,$obligatoires);
 

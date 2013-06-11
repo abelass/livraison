@@ -25,7 +25,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_id_livraison_zone' => 'Id zone',
 	'label_maj' => 'MAJ',
 	'label_mesure_max' => 'Mesure maximale',
+	'label_mesure_max_poids' => 'Poids maximal',	
 	'label_mesure_min' => 'Mesure minimale ',
+	'label_mesure_min_poids' => 'Poids minimal ',	
 	'label_montant' => 'Montant',
 
 	// R
