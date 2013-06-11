@@ -2,7 +2,10 @@
 	montant,1, 
 	id_livraison_montant,1,
 	points,-1
-}})]<B_liste_livraison_montants>
+}})]
+#SET{unite,#ID_LIVRAISON_ZONE|unite_mesure{'',true}}
+#SET{mesure,#GET{unite}|mesure_unite}
+<B_liste_livraison_montants>
 #ANCRE_PAGINATION
 <div class="liste-objets livraison_montants">
 <table class='spip liste'>
@@ -11,8 +14,8 @@
 		<tr class='first_row'>
 			<th class='picto' scope='col'></th>
 			<th class='montant' scope='col'>[(#TRI{montant,<:livraison_montant:label_montant:>,ajax})]</th>
-			<th class='mesure_min' scope='col'><:livraison_montant:label_mesure_min:></th>
-			<th class='mesure_max' scope='col'><:livraison_montant:label_mesure_max:></th>						
+			<th class='mesure_min' scope='col'>[(#VAL{livraison_montant:label_mesure_min[_(#GET{mesure})]}|_T)]</th>
+			<th class='mesure_max' scope='col'>[(#VAL{livraison_montant:label_mesure_max[_(#GET{mesure})]}|_T)]</th>						
 			<th class='id' scope='col'>[(#TRI{id_livraison_montant,<:info_numero_abbreviation:>,ajax})]</th>
 			<th></th>
 		</tr>
@@ -23,7 +26,7 @@
 			<td class='picto'>[(#CHEMIN_IMAGE{livraison_montant-16.png}|balise_img)]</td>
 			<td class='montant principale'>[(#LOGO_LIVRAISON_MONTANT|image_reduire{20,26})]<a href="[(#ID_LIVRAISON_MONTANT|generer_url_entite{livraison_montant})]" title="<:info_numero_abbreviation|attribut_html:> #ID_LIVRAISON_MONTANT">[(#RANG). ][(#MONTANT|devise_defaut_prix)]</a></td>
 			
-			#SET{unite,#ID_LIVRAISON_ZONE|unite_mesure}
+			
 			<td class="mesure_min">[(#MESURE_MIN|>{0}|?{
 			     [(#MESURE_MIN)] [(#GET{unite})],
 			     [(#MESURE_MIN)]
