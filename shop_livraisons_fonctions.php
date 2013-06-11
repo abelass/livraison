@@ -11,14 +11,15 @@
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
-function unite_mesure($id_livraison_zone,$mesure=''){
+function unite_mesure($id_livraison_zone,$mesure='',$brute=false){
     include_spip('inc/config');
     $config=lire_config('shop_livraison',array());
     
     $unite=sql_getfetsel('unite','spip_livraison_zones','id_livraison_zone='.$id_livraison_zone);
-    
-    if($mesure) $unite=$mesure.' .'._T('livraison:label_unite_'.$unite);
-    else $unite=_T('livraison:label_unite_'.$unite);
+    if(!$brute){
+        if($mesure) $unite=$mesure.' .'._T('livraison:label_unite_'.$unite);
+        else $unite=_T('livraison:label_unite_'.$unite);
+        }
     return $unite;
 }
 
