@@ -22,8 +22,14 @@ function unite_mesure($id_livraison_zone,$mesure=''){
     return $unite;
 }
 
-// Charge le tableau des mesures et unités
-function unites_dipos(){
+// Charge l'unité par défaut
+function unite_defaut(){
+    include_spip('inc/config');
+    $unite_defaut=lire_config('shop_livraison/unite_defaut'); 
+    return $unite_defaut;
+}
+
+function unites_dispos(){
     $unites=charger_fonction('unites','inc');
     $unites=$unites();
     return $unites;
@@ -31,18 +37,22 @@ function unites_dipos(){
 
 // Charge la mesure par défaut
 function mesure_defaut(){
-    include_spip('inc/config');
-    $unite_defaut=lire_config('shop_livraison/unite_defaut'); 
-    $unites=unites_dipos();
-    if($unite_defaut){
-      foreach($unites AS $mesure=>$unite){
-           if(array_key_exists($unite_defaut,$unite))$mesure_defaut=$mesure;
-        }
-    }
-
-
-    return $mesure_defaut;
+    $unite_defaut=unite_defaut();  
+    return $mesure_defaut=mesure_unite($unite_defaut);
 }
 
 
+function mesure_unite($unite=""){
+    $unites=unites_dispos();
+
+    if($unite){
+    if($unites){
+      foreach($unites AS $mesure=>$u){
+           if(array_key_exists($unite,$u))$mesure_unite=$mesure;
+            }
+        }
+    }
+    else mesure_defaut();
+    return $mesure_unite;
+}
 ?>
