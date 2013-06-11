@@ -38,8 +38,11 @@ function shop_livraisons_upgrade($nom_meta_base_version, $version_cible) {
     /*Installation de champs via le plugin champs extras*/
     include_spip('inc/cextras');
     include_spip('base/shop_livraisons');
-    cextras_api_upgrade(shop_livraisons_declarer_champs_extras(), $maj['create']);   
-    cextras_api_upgrade(shop_livraisons_declarer_champs_extras(), $maj['1.1.5']);
+    if(function_exists(cextras_api_upgrade)){
+        cextras_api_upgrade(shop_livraisons_declarer_champs_extras(), $maj['create']);   
+        cextras_api_upgrade(shop_livraisons_declarer_champs_extras(), $maj['1.1.5']);
+    }
+    
     
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);

@@ -19,6 +19,7 @@
 	<necessite nom="shop_prix" compatibilite="[1.4.3;]" />		
 	<necessite nom="pays" compatibilite="[2.1.1;]" />
 	<necessite nom="continents" compatibilite="[1.0.1;]" />
+	<necessite nom="cextras" compatibilite="[3.2.4;]" />	
 	
 	<pipeline nom="autoriser" inclure="shop_livraisons_autorisations.php" /> 
 
