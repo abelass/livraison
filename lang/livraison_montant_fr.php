@@ -12,6 +12,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// E
 	'explication_mesure_max' => 'Valeur maximal d\'application de ce montant (en @unite@)',
 	'explication_mesure_min' => 'Valeur minimale à partir de laquelle ce montant s\'applique (en @unite@)',
+	'explication_tranche_frais_livraison' => '(par tranche de max. @mesure_max@ @unite@)',	
+    
 
 	// I
 	'icone_creer_livraison_montant' => 'Créer un frais de livraison',
