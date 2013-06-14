@@ -33,7 +33,6 @@ function shop_livraisons_post_insertion($flux){
             $prix_unitaire_ht='';
             $montant='';
             
-            $quantite[]=$data['quantite'];
             //On regarde si on une unité s'applique
             if(isset($row['unite'])){
                 //On établit les donées de l'objet auquel un prix est attaché
@@ -44,12 +43,9 @@ function shop_livraisons_post_insertion($flux){
                 $id_table_objet=$e['id_table_objet'];  
                  //On réupère la mesure pour l'objet 
                 $id_objet[]=$objet_prix['id_objet'];        
-                $mesure[]=sql_getfetsel('mesure',$table,$id_table_objet.'='.$objet_prix['id_objet']);
-    
+                $mesure[]=sql_getfetsel('mesure',$table,$id_table_objet.'='.$objet_prix['id_objet'])*$data['quantite'];
             }
         }
-        $mesure_array=$quantite;
-        $quantite=array_sum($quantite);
         
         $valeurs= array(
                         'id_commande' => $id_commande,
@@ -65,22 +61,20 @@ function shop_livraisons_post_insertion($flux){
             $montant=sql_fetsel('montant,id_livraison_montant','spip_livraison_montants','id_livraison_zone='.$row['id_livraison_zone']);  
             }//Sinon on vérifie si une tranche de mesure s'applique pour la mesure en question pour l'enregistrer
         else {
-            
-            $mesure=array_sum($mesure)*$quantite;
+            $mesure=array_sum($mesure);
             
             if(!$montant=sql_fetsel('montant,id_livraison_montant','spip_livraison_montants','id_livraison_zone='.$row['id_livraison_zone'].' AND mesure_min <='.$mesure.' AND mesure_max >='.$mesure)){
                 //Sinon on divise le tout, et on enregistre par tranche
                 mesure_par_tranche($mesure,$valeurs,$quantite,$row);
                 return $flux;
-            }
-    
+                }
             }
           
         
         if(!$prix_unitaire_ht=$montant['montant']){
             include_spip('inc/config');
             $prix_unitaire_ht=lire_config('shop_livraison/montant_defaut');
-        }
+            }
             
         $valeurs['id_objet']=$montant['id_livraison_montant'];
         $valeurs['prix_unitaire_ht']=$montant['montant'];    
@@ -103,7 +97,7 @@ function mesure_par_tranche($mesure,$valeurs,$quantite,$livraison_zone){
         $mesure_restante=$mesure-$mesure_max; 
         /*Puis on regarde si la mesure restante entre dans une tranche de mesures de la zone, sin oui on l'enregistre et on termine*/
         if($montant=sql_fetsel('montant,id_livraison_montant','spip_livraison_montants','id_livraison_zone='.$livraison_zone['id_livraison_zone'].' AND mesure_min <='.$mesure_restante.' AND mesure_max >='.$mesure_restante)){
-            $total=$montant['montant']*$quantite;    
+            $total=$montant['montant'];    
             $valeurs['id_objet']=$montant['id_livraison_montant'];
             $valeurs['prix_unitaire_ht']= $montant['montant']; 
             $valeurs['descriptif'] =_T('livraison_montant:titre_livraison_montant'); 
