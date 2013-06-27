@@ -19,7 +19,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     // L
     'label_mesure'=>'Mesure', 
     'label_mesure_poids'=>'Poids',         
-    'label_montant_defaut'=>'Montant par défaut', 
+    'label_montant_defaut'=>'Montant par défaut :', 
     'label_poids'=>'Poids',           
     'label_unite_defaut'=>'L\'unité par défaut',    
     'label_unite_rien'=>'Acune unité',

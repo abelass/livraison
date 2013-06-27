@@ -16,7 +16,7 @@
 		</tr>
 	</thead>
 	<tbody>
-	<BOUCLE_liste_livraison_zones(LIVRAISON_ZONES){id_mot?}{id_auteur?}{where?}{recherche?}{tri #ENV{par,num nom},#GET{defaut_tri}}{par nom}{pagination #ENV{nb,10}}>
+	<BOUCLE_liste_livraison_zones(LIVRAISON_ZONES){id_mot?}{id_auteur?}{recherche?}{tri #ENV{par,num nom},#GET{defaut_tri}}{par nom}{pagination #ENV{nb,10}}>
 		<tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
 			<td class='picto'>[(#CHEMIN_IMAGE{livraison_zone-16.png}|balise_img)]</td>
 			<td class='nom principale'>[(#LOGO_LIVRAISON_ZONE|image_reduire{20,26})]<a href="[(#ID_LIVRAISON_ZONE|generer_url_entite{livraison_zone})]" title="<:info_numero_abbreviation|attribut_html:> #ID_LIVRAISON_ZONE">[(#RANG). ][(#NOM)]</a></td>
@@ -31,7 +31,7 @@
             <td class='picto'>[(#CHEMIN_IMAGE{livraison_zone-16.png}|balise_img)]</td>
             <td class='nom principale'>[(#LOGO_LIVRAISON_ZONE|image_reduire{20,26})]
                 #SET{montant,#CONFIG{shop_livraison/montant_defaut}}
-                [(#GET{montant}|oui)<:livraison:label_montant_defaut:> - [(#GET{montant}|devise_defaut_prix)]]
+                [(#GET{montant}|oui)<:livraison:label_montant_defaut:> [(#GET{montant}|devise_defaut_prix)]]
                 [(#GET{montant}|non)<p class="error"><:livraison:texte_montant_defaut_non_definit{url=#URL_ECRIRE{configuer_shop_livraison}}:></p>]
             </td>
             <td class='id'></td>
