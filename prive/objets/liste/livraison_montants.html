@@ -3,8 +3,11 @@
 	id_livraison_montant,1,
 	points,-1
 }})]
-#SET{unite,#ID_LIVRAISON_ZONE|unite_mesure{'',true}}
-#SET{mesure,#GET{unite}|mesure_unite}
+[(#ID_LIVRAISON_ZONE|oui)
+    #SET{unite,#ID_LIVRAISON_ZONE|unite_mesure{'',true}}
+    #SET{mesure,#GET{unite}|mesure_unite}
+    ]
+
 <B_liste_livraison_montants>
 #ANCRE_PAGINATION
 <div class="liste-objets livraison_montants">
