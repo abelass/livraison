@@ -5,16 +5,10 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-	// C
-	'cfg_exemple' => 'Exemple',
-	'cfg_exemple_explication' => 'Explication de cet exemple',
-	'cfg_titre_parametrages' => 'Paramétrages',
-
 	// S
-	'shop_livraison_titre' => 'Shop Livraisons',
-
-	// T
-	'titre_page_configurer_shop_livraison' => 'Shop Livraisons'
+	'livraison_description' => 'Gestion de livraisons',
+	'livraison_nom' => 'Livraisons',
+	'livraison_slogan' => 'Gestion de livraisons'
 );
 
 ?>
