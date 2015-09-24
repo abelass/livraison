@@ -13,46 +13,61 @@ if (!defined('_ECRIRE_INC_VERSION'))
   return;
 
 function livraison_post_insertion($flux) {
+  $table = $flux['args']['table'];
+
   // Après insertion d'une commande "encours" et s'il y a un panier en cours
-  if ($flux['args']['table'] == 'spip_commandes' and ($id_commande = intval($flux['args']['id_objet'])) > 0 and $flux['data']['statut'] == 'encours') {
+  if ($table == 'spip_commandes' and ($id_commande = intval($flux['args']['id_objet'])) > 0 and $flux['data']['statut'] == 'encours') {
     include_spip('inc/filtres');
     include_spip('inc/config');
-    $pays = _request('pays');
-    $row = sql_fetsel('id_livraison_zone,unite', 'spip_pays LEFT JOIN spip_livraison_zones USING(id_livraison_zone)', 'code=' . sql_quote($pays));
 
-    $sql = sql_select('quantite,objet,id_objet', 'spip_commandes_details', 'id_commande=' . $id_commande);
+    if(!$pays_defaut = session_get('pays'))
+      $pays_defaut = 'BE';
+
+    $pays = pipeline('livraison_pays_commande',array(
+      'args'=>array(
+        'id_commande' => $id_commande
+      ),
+      'data'=>array(
+        'pays' => $pays_defaut
+        )
+    ));
+    $livraison_zone = sql_fetsel('id_livraison_zone,unite', 'spip_pays LEFT JOIN spip_livraison_zones USING(id_livraison_zone)', 'code=' . sql_quote($pays));
+    $id_panier = paniers_id_panier_encours();
+    $panier = sql_allfetsel(
+        '*',
+        'spip_paniers_liens',
+        'id_panier = '.intval($id_panier)
+      );
     include_spip('inc/pipelines_ecrire');
     $quantite = array();
     $mesure = array();
-    $id_objet = array();
 
-    while ($data = sql_fetch($sql)) {
+
+    foreach($panier as $emplette){
+
       $prix_unitaire_ht = '';
       $montant = '';
 
       //On regarde si on une unité s'applique
-      if (isset($row['unite'])) {
         //Si le plugin prix_objets est activé
         if (test_plugin_actif('prix_objets')) {
-          //On chercher l'objet attaché au prix
-          $objet_prix = sql_fetsel('objet,id_objet', 'spip_prix_objets', 'id_prix_objet=' . $data['id_objet']);
+          //On cherche l'objet attaché au prix
+          $objet_prix = sql_fetsel('objet,id_objet', 'spip_prix_objets', 'id_prix_objet=' . $emplette['id_objet']);
           $objet = $objet_prix['objet'];
           $id_objet = $objet_prix['id_objet'];
         }
-        //Sinon on prend les donnés de l'objet depuis le détail de la commande
+        //Sinon on prend les données de l'objet depuis le détail de la commande
         else {
-          $objet = $data['objet'];
-          $id_objet = $data['id_objet'];
+          $objet = $emplette['objet'];
+          $id_objet = $emplette['id_objet'];
         }
 
         //On constitue les données de cet objet
         $e = trouver_objet_exec($objet);
         $table = table_objet_sql($objet);
         $id_table_objet = $e['id_table_objet'];
-
         //On récupère la mesure pour l'objet
-        $mesure[] = sql_getfetsel('mesure', $table, $id_table_objet . '=' . $id_objet) * $data['quantite'];
-      }
+        $mesure[] = sql_getfetsel('mesure', $table, $id_table_objet . '=' . $id_objet) * $emplette['quantite'];
     }
 
     $valeurs = array(
@@ -65,18 +80,17 @@ function livraison_post_insertion($flux) {
 
     //On regarde si on a une unité qui s'applique
     if (count($mesure) == 0) {
-      $montant = sql_fetsel('montant,id_livraison_montant', 'spip_livraison_montants', 'id_livraison_zone=' . $row['id_livraison_zone']);
+      return $flux;
     }//Sinon on vérifie si une tranche de mesure s'applique pour la mesure en question pour l'enregistrer
     else {
       $mesure = array_sum($mesure);
 
-      if (!$montant = sql_fetsel('montant,id_livraison_montant', 'spip_livraison_montants', 'id_livraison_zone=' . $row['id_livraison_zone'] . ' AND mesure_min <=' . $mesure . ' AND mesure_max >=' . $mesure)) {
+      if (!$montant = sql_fetsel('montant,id_livraison_montant', 'spip_livraison_montants', 'id_livraison_zone=' . $livraison_zone['id_livraison_zone'] . ' AND mesure_min <=' . $mesure . ' AND mesure_max >=' . $mesure)) {
         //Sinon on divise le tout, et on enregistre par tranche
-        mesure_par_tranche($mesure, $valeurs, $quantite, $row);
+        mesure_par_tranche($mesure, $valeurs, $quantite, $livraison_zone);
         return $flux;
       }
     }
-
     //Le prix unitaire
     $prix_unitaire_ht = isset($montant['montant']) ? $montant['montant'] : lire_config('shop_livraison/montant_defaut');
 
@@ -85,8 +99,12 @@ function livraison_post_insertion($flux) {
     $valeurs['statut'] = 'attente';
     sql_insertq('spip_commandes_details', $valeurs);
   }
-
   return $flux;
+
+  //Ajouter le pays à la session après la validation des formulaires clients
+  if (($form == 'inscription_client' OR $form == 'editer_client') AND $pays = _request('pays')) {
+    session_set('pays',$pays);
+  }
 }
 
 //Établir les tranche de frais de livraison par rapport à la mesure maximale de la zone de livraison
