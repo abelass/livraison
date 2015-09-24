@@ -13,9 +13,10 @@ if (!defined('_ECRIRE_INC_VERSION'))
   return;
 
 function livraison_post_insertion($flux) {
-  include_spip('inc/config');
   // Après insertion d'une commande "encours" et s'il y a un panier en cours
-  if ($flux['args']['table'] == 'spip_commandes' and ($id_commande = intval($flux['args']['id_objet'])) > 0 and $flux['data']['statut'] == 'encours' and include_spip('inc/filtres')) {
+  if ($flux['args']['table'] == 'spip_commandes' and ($id_commande = intval($flux['args']['id_objet'])) > 0 and $flux['data']['statut'] == 'encours') {
+    include_spip('inc/filtres');
+    include_spip('inc/config');
     $pays = _request('pays');
     $row = sql_fetsel('id_livraison_zone,unite', 'spip_pays LEFT JOIN spip_livraison_zones USING(id_livraison_zone)', 'code=' . sql_quote($pays));
 
@@ -81,6 +82,7 @@ function livraison_post_insertion($flux) {
 
     $valeurs['id_objet'] = isset($montant['id_livraison_montant']) ? $montant['id_livraison_montant'] : 0;
     $valeurs['prix_unitaire_ht'] = $prix_unitaire_ht;
+    $valeurs['statut'] = 'attente';
     sql_insertq('spip_commandes_details', $valeurs);
   }
 
